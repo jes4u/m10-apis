@@ -1,14 +1,19 @@
 ### Exercise 3 ###
 library(jsonlite)
 library(dplyr)
+setwd("C:/Users/Jesse/Desktop/AUT16/INFO 201/Modules/m10-apis/exercise-3")
 # Use the `load` function to load in the nelly_tracks file.  That should make the data.frame
 # `top_nelly` available to you
-
+load("nelly_tracks.Rdata")
 
 # Use the `flatten` function to flatten the data.frame -- note what differs!
-
+flat.nelly <- flatten(top.nelly)
 
 # Use your `dplyr` functions to get the number of the songs that appear on each albumt
+num.songs <- flat.nelly %>%
+  group_by(album.name) %>%
+  summarise(n = n()) %>% 
+  arrange(-n)
 
 
 
